@@ -35,6 +35,34 @@ If you take ideas from here into production, take the measurements and the
 architecture — the quote verification, the per-corpus stopwords, the trace bus —
 and leave the deployment model behind.
 
+## What it looks like
+
+**The X-ray.** The stage that ran, the query that actually reached Postgres with
+the corpus stopwords struck through and their document frequencies beside them,
+each ranked run, and a switch for every decision — each carrying the figure it
+was measured at on this build.
+
+![The X-ray: the tsquery that ran, the ranked runs, and a switch beside every decision](docs/img/xray.png)
+
+**Chat.** Quotes in guillemets are checked character-for-character against the
+passages actually retrieved; a path renders as a chip only when that passage was
+retrieved, so a reference the model produced from memory stays plain text. The
+footer is what the answer cost and what it rested on.
+
+![Chat: an answer with verified quotations, citation chips and the run's cost](docs/img/chat.png)
+
+**Chunking, side by side.** The same text, the same retriever, the same query —
+cut two ways. Eight of eight passages citable against none; none opening
+mid-sentence against six.
+
+![The same corpus chunked two ways, with citable identity and mid-sentence counts](docs/img/chunking.png)
+
+**Sources.** A connector plus a schedule: a folder, a list of URLs, or any MCP
+server that can list and read. The run log is what it actually did — unchanged
+items are hashed and skipped.
+
+![A corpus syncing from an MCP server, with its run history](docs/img/sources.png)
+
 ## Quickstart
 
 Needs Docker (for Postgres + pgvector), Python 3.12+ with [uv], Node 20+, and a
