@@ -1,0 +1,358 @@
+{
+  "id": "ragdemoSample001",
+  "name": "RAGDemo — ask the knowledge base (two ways)",
+  "nodes": [
+    {
+      "parameters": {
+        "content": "## RAGDemo sample workflow\n\nTested against n8n **2.39.6**. Branch A was executed end to end; branch B's node\ntypes and parameters were validated against the node registry but the agent\nitself was not run (it needs your own model credential).\n\nTwo independent branches. Keep the one you want and delete the other.\n\n**A — HTTP Request → POST /v1/ask**\nPlain request/response. Works in any n8n version, no AI nodes needed.\nUse when n8n itself is the orchestrator and you just want an answer plus its citations.\n\n**B — AI Agent + MCP Client → the MCP server**\nGives the model the knowledge base as *callable tools*, so it decides when to\nsearch and when to book. Needs the MCP server running with `--http`:\n\n```\ncd api && .venv/bin/python -m app.mcp.server --http\n```\n\n### Before you run this\n- **If n8n is in Docker**, `localhost` is the *container*. Swap both URLs for\n  `http://host.docker.internal:8041` / `:8143` (and run the container with\n  `--add-host=host.docker.internal:host-gateway` on Linux).\n- **Branch B additionally needs `MCP_HTTP_HOST=0.0.0.0`.** The MCP server binds\n  `127.0.0.1` by default, which a container cannot reach — verified: the API on\n  8041 answers from inside the container, the MCP server on 8143 refuses the\n  connection until you rebind it. Branch A needs no such change.\n- If you set `API_KEY` in `api/.env`, add an `X-API-Key` header to branch A's\n  HTTP Request node. It is unset (and the endpoint open) by default.\n- An ask costs real money and is charged against the demo's shared daily budget.\n  A 429 or 503 from branch A means a limit was hit, not a bug.",
+        "height": 560,
+        "width": 460
+      },
+      "id": "note-readme",
+      "name": "Read me first",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-380, 40]
+    },
+    {
+      "parameters": {},
+      "id": "trigger-manual",
+      "name": "When clicking 'Test workflow'",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [140, 320]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a1",
+              "name": "kb",
+              "value": "aiact",
+              "type": "string"
+            },
+            {
+              "id": "a2",
+              "name": "question",
+              "value": "Do we have to tell users they're talking to an AI?",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "set-input",
+      "name": "Question",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [360, 320]
+    },
+    {
+      "parameters": {
+        "content": "### Branch A — one request, one answer\n\n`POST /v1/ask` runs the same pipeline as the\nbrowser demo's streaming endpoint, but returns\na single JSON body instead of Server-Sent\nEvents — no stream parsing in n8n.\n\nA request takes **20–60 seconds**: the agent\nsearches several times before it answers. The\ntimeout below is set to 120s deliberately;\nn8n's 10s default would abort a good answer.",
+        "height": 300,
+        "width": 340,
+        "color": 4
+      },
+      "id": "note-a",
+      "name": "About branch A",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [580, -20]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:8041/v1/ask",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ kb: $json.kb, question: $json.question }) }}",
+        "options": {
+          "timeout": 120000,
+          "response": {
+            "response": {
+              "neverError": false
+            }
+          }
+        }
+      },
+      "id": "http-ask",
+      "name": "POST /v1/ask",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [620, 320]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b1",
+              "name": "answer",
+              "value": "={{ $json.answer }}",
+              "type": "string"
+            },
+            {
+              "id": "b2",
+              "name": "refusal",
+              "value": "={{ $json.refusal }}",
+              "type": "string"
+            },
+            {
+              "id": "b3",
+              "name": "citation_count",
+              "value": "={{ ($json.cited || []).length }}",
+              "type": "number"
+            },
+            {
+              "id": "b4",
+              "name": "unverified_count",
+              "value": "={{ ($json.unverified_quotes || []).length }}",
+              "type": "number"
+            },
+            {
+              "id": "b5",
+              "name": "sources",
+              "value": "={{ ($json.cited || []).map(c => c.url).filter(u => u).filter((u, i, a) => a.indexOf(u) === i) }}",
+              "type": "array"
+            },
+            {
+              "id": "b6",
+              "name": "trace_id",
+              "value": "={{ $json.trace_id }}",
+              "type": "string"
+            },
+            {
+              "id": "b7",
+              "name": "cost_usd",
+              "value": "={{ $json.cost_usd }}",
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "set-shape",
+      "name": "Answer + sources",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [860, 320]
+    },
+    {
+      "parameters": {
+        "content": "### Check this before you trust it\n\n`unverified_count > 0` means the answer quoted\nsomething that was **not** found in what was\nretrieved. The API reports it rather than\nhiding it — so route on it instead of piping\nthe answer straight into an email.\n\n`refusal` is set (and `answer` null) when the\nmodel returned nothing.",
+        "height": 280,
+        "width": 340,
+        "color": 3
+      },
+      "id": "note-verify",
+      "name": "About the check",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [1080, 20]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.unverified_count }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "c2",
+              "leftValue": "={{ $json.answer }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-verified",
+      "name": "Fully verified?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [1120, 320]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d1",
+              "name": "status",
+              "value": "verified",
+              "type": "string"
+            },
+            {
+              "id": "d2",
+              "name": "deliver",
+              "value": "={{ $json.answer }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "set-ok",
+      "name": "Safe to send",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [1400, 220]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e1",
+              "name": "status",
+              "value": "needs_review",
+              "type": "string"
+            },
+            {
+              "id": "e2",
+              "name": "reason",
+              "value": "={{ $json.answer ? 'contains ' + $json.unverified_count + ' unverified quote(s)' : ('no answer: ' + $json.refusal) }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "set-review",
+      "name": "Send to a human",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [1400, 420]
+    },
+    {
+      "parameters": {
+        "content": "### Branch B — the KB as agent tools\n\nThe MCP Client node exposes all five tools to\nthe agent:\n\n- `list_knowledge_bases`\n- `search_kb`\n- `ask_knowledge_base`\n- `list_appointments`\n- `book_appointment`\n\nThe last two are **not** retrieval. That is the\npoint of this branch: the same agent can answer\nfrom the corpus *and* book the call about it,\nwhich is the thing a search-only integration\ncannot do.\n\nTry: *\"What are the transparency rules for\nchatbots, and book me 30 minutes on Monday at\n10:00 to discuss it — I'm Sam, sam@acme.com.\"*\n\nThe Chat Model node needs your own credential.",
+        "height": 560,
+        "width": 360,
+        "color": 5
+      },
+      "id": "note-b",
+      "name": "About branch B",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [140, 700]
+    },
+    {
+      "parameters": {
+        "public": false,
+        "options": {}
+      },
+      "id": "trigger-chat",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [560, 820]
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You help people with questions about the knowledge bases on this server, and you can book appointments.\n\nRules:\n- Answer questions from the knowledge base, never from memory. Call list_knowledge_bases first if you do not already know which slug to use.\n- Use ask_knowledge_base when the person wants an answer; use search_kb when you want the raw passages to reason over yourself.\n- Always give back the citations the tool returns. If a tool reports unverified quotes, say so rather than presenting the answer as confirmed.\n- Before booking, call list_appointments to see what is taken. Appointments are Mon-Fri 09:00-17:00, on the hour or half hour. You need a name and an email address; ask for them rather than inventing them.\n- If a tool returns an error, read it - it usually says exactly what to fix - and try again."
+        }
+      },
+      "id": "agent",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [840, 820]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "chat-model",
+      "name": "Chat Model (add your credential)",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [740, 1040]
+    },
+    {
+      "parameters": {
+        "sessionIdType": "fromInput",
+        "contextWindowLength": 10
+      },
+      "id": "memory",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [900, 1040]
+    },
+    {
+      "parameters": {
+        "endpointUrl": "http://localhost:8143/mcp",
+        "serverTransport": "httpStreamable",
+        "authentication": "none",
+        "include": "all"
+      },
+      "id": "mcp-client",
+      "name": "RAGDemo MCP server",
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.4,
+      "position": [1060, 1040]
+    }
+  ],
+  "connections": {
+    "When clicking 'Test workflow'": {
+      "main": [[{ "node": "Question", "type": "main", "index": 0 }]]
+    },
+    "Question": {
+      "main": [[{ "node": "POST /v1/ask", "type": "main", "index": 0 }]]
+    },
+    "POST /v1/ask": {
+      "main": [[{ "node": "Answer + sources", "type": "main", "index": 0 }]]
+    },
+    "Answer + sources": {
+      "main": [[{ "node": "Fully verified?", "type": "main", "index": 0 }]]
+    },
+    "Fully verified?": {
+      "main": [
+        [{ "node": "Safe to send", "type": "main", "index": 0 }],
+        [{ "node": "Send to a human", "type": "main", "index": 0 }]
+      ]
+    },
+    "When chat message received": {
+      "main": [[{ "node": "AI Agent", "type": "main", "index": 0 }]]
+    },
+    "Chat Model (add your credential)": {
+      "ai_languageModel": [[{ "node": "AI Agent", "type": "ai_languageModel", "index": 0 }]]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [[{ "node": "AI Agent", "type": "ai_memory", "index": 0 }]]
+    },
+    "RAGDemo MCP server": {
+      "ai_tool": [[{ "node": "AI Agent", "type": "ai_tool", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "ragdemo-sample"
+  },
+  "tags": []
+}

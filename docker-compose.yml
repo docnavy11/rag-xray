@@ -1,0 +1,17 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16
+    container_name: ragdemo-db
+    environment:
+      POSTGRES_USER: ragdemo
+      POSTGRES_PASSWORD: ragdemo
+      POSTGRES_DB: ragdemo
+    ports: ["5444:5432"]
+    volumes: ["ragdemo-pg:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ragdemo"]
+      interval: 5s
+      retries: 12
+
+volumes:
+  ragdemo-pg:

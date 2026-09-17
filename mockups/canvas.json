@@ -1,0 +1,14 @@
+{
+  "artboards": [
+    { "file": "Shelf.dc.html",    "x": 0,    "y": 0,    "w": 1440, "h": 900, "title": "1 · Pick a corpus" },
+    { "file": "Main.dc.html",     "x": 1560, "y": 0,    "w": 1440, "h": 900, "title": "2 · Chat" },
+    { "file": "Xray.dc.html",     "x": 0,    "y": 1020, "w": 1440, "h": 960, "title": "3 · X-ray" },
+    { "file": "XrayDiff.dc.html", "x": 1560, "y": 1020, "w": 1440, "h": 960, "title": "4 · X-ray · counterfactual" }
+  ],
+  "annotations": [
+    { "id": "note-flow", "x": 0, "y": -150, "w": 460, "text": "The demo in four screens.\n\nShelf → Chat → X-ray → turn a decision off and watch the ranking move." },
+    { "id": "note-agent", "x": 1560, "y": -150, "w": 460, "text": "Chat runs on the Claude Agent SDK: retrieval is a tool the agent chooses to call, not a fixed pre-step. The X-ray shows that choice, then opens up what happened inside the call." },
+    { "id": "note-cost", "x": 1560, "y": 2010, "w": 500, "text": "Counterfactuals stop before the model, so they are free and instant. Answering again is a separate, priced button — which is what lets this run in front of an audience all day." }
+  ],
+  "launch": { "view": "canvas" }
+}

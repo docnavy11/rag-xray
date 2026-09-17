@@ -1,0 +1,27 @@
+# dependencies and build output
+.venv/
+node_modules/
+dist/
+__pycache__/
+*.pyc
+
+# configuration and anything holding credentials
+.env
+.env.*
+!.env.example
+
+# local data
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+
+# editors and operating systems
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# scratch
+*.log
+/tmp/

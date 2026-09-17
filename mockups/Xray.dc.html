@@ -1,0 +1,237 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Serif:ital,wght@1,400&display=swap">
+  <style>
+    body{margin:0;font-family:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+    a{color:#0E5C5E;text-underline-offset:2px}
+    a:hover{color:#127A7D}
+  </style>
+</helmet>
+
+<div style="width:1440px;height:960px;background:#F3F4F1;color:#171A17;display:flex;flex-direction:column;overflow:hidden">
+
+  <div style="height:57px;flex:none;background:#FFFFFF;border-bottom:1px solid #D6D9D2;display:flex;align-items:center;padding:0 22px;gap:14px">
+    <div style="display:flex;align-items:center;gap:7px;color:#4A4F49;font-size:13.5px;cursor:pointer">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"></path></svg>
+      Back to chat
+    </div>
+    <div style="width:1px;height:22px;background:#D6D9D2"></div>
+    <div style="font-size:14px;color:#171A17;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:420px">&ldquo;Do we have to tell people they&rsquo;re talking to an AI, and from when?&rdquo;</div>
+    <div style="flex-grow:1"></div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#787E76;font-variant-numeric:tabular-nums">trace 7f3c9a2 &middot; 8.9s &middot; $0.0164</div>
+    <div style="font-size:12.5px;color:#0E5C5E;border:1px solid #BFDAD9;background:#DCEAE9;border-radius:4px;padding:5px 11px;cursor:pointer">Copy permalink</div>
+  </div>
+
+  <div style="flex:none;background:#FFFFFF;border-bottom:1px solid #D6D9D2;padding:17px 26px 19px">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:13px">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#787E76">Agent loop &middot; Claude Agent SDK</div>
+      <div style="height:1px;background:#D6D9D2;flex-grow:1"></div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#787E76">2 turns &middot; 1 tool call</div>
+    </div>
+
+    <div style="display:flex;align-items:stretch;gap:0">
+      <div style="display:flex;flex-direction:column;gap:5px;padding:9px 14px;background:#F3F4F1;border:1px solid #D6D9D2;border-radius:6px 0 0 6px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#787E76">question</div>
+        <div style="font-size:13px;color:#171A17">14 words, en</div>
+      </div>
+      <div style="width:18px;display:grid;place-items:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#B4B9AE" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div>
+      <div style="display:flex;flex-direction:column;gap:5px;padding:9px 14px;background:#F3F4F1;border:1px solid #D6D9D2;border-radius:6px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#787E76">turn 1 &middot; decides</div>
+        <div style="font-size:13px;color:#171A17">calls <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#0E5C5E">search_kb</span></div>
+      </div>
+      <div style="width:18px;display:grid;place-items:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#B4B9AE" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div>
+
+      <div style="flex-grow:1;border:1.5px solid oklch(0.42 0.070 195);border-radius:7px;background:#FFFFFF;padding:8px 10px 10px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#0E5C5E">inside the tool call &mdash; the retrieval pipeline</div>
+          <div style="height:1px;background:#DCEAE9;flex-grow:1"></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#787E76;font-variant-numeric:tabular-nums">0.71s</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px">
+          <div style="flex-grow:1;padding:7px 11px;background:#F3F4F1;border:1px solid #D6D9D2;border-radius:5px">
+            <div style="font-size:12.5px;color:#171A17;font-weight:500">Expand</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#787E76;font-variant-numeric:tabular-nums">5 terms &middot; 0.41s</div>
+          </div>
+          <div style="flex-grow:1;padding:7px 11px;background:#F3F4F1;border:1px solid #D6D9D2;border-radius:5px">
+            <div style="font-size:12.5px;color:#171A17;font-weight:500">Lexical &times;3</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#787E76;font-variant-numeric:tabular-nums">27 hits &middot; 0.18s</div>
+          </div>
+          <div style="flex-grow:1;padding:7px 11px;background:oklch(0.42 0.070 195);border:1px solid oklch(0.42 0.070 195);border-radius:5px;box-shadow:0 2px 8px -3px rgba(20,24,20,.45)">
+            <div style="font-size:12.5px;color:#FFFFFF;font-weight:600">Fuse &middot; RRF</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#DCEAE9;font-variant-numeric:tabular-nums">27&rarr;19 &middot; 0.01s</div>
+          </div>
+          <div style="flex-grow:1;padding:7px 11px;background:#F3F4F1;border:1px solid #D6D9D2;border-radius:5px">
+            <div style="font-size:12.5px;color:#171A17;font-weight:500">Follow refs</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#787E76;font-variant-numeric:tabular-nums">+2 &middot; 0.09s</div>
+          </div>
+          <div style="flex-grow:1;padding:7px 11px;background:#F3F4F1;border:1px solid #D6D9D2;border-radius:5px">
+            <div style="font-size:12.5px;color:#171A17;font-weight:500">Assemble</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#787E76;font-variant-numeric:tabular-nums">14 chunks &middot; 8.1k tok</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="width:18px;display:grid;place-items:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#B4B9AE" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div>
+      <div style="display:flex;flex-direction:column;gap:5px;padding:9px 14px;background:#F3F4F1;border:1px solid #D6D9D2;border-radius:6px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#787E76">turn 2 &middot; writes</div>
+        <div style="font-size:13px;color:#171A17">612 tok &middot; 6.1s</div>
+      </div>
+      <div style="width:18px;display:grid;place-items:center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#B4B9AE" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></div>
+      <div style="display:flex;flex-direction:column;gap:5px;padding:9px 14px;background:#F8EAE7;border:1px solid #E0B4AC;border-radius:0 6px 6px 0">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:#8F2E22">verify</div>
+        <div style="font-size:13px;color:#171A17">3 of 4 quotes</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex-grow:1;display:grid;grid-template-columns:minmax(0,1fr) 400px;min-height:0">
+
+    <div style="padding:22px 26px;overflow:hidden;display:flex;flex-direction:column">
+      <div style="display:flex;align-items:baseline;gap:13px;border-top:2px solid #171A17;padding-top:12px;margin-bottom:6px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#0E5C5E;flex:none;padding-top:3px">03</span>
+        <h2 style="font-size:21px;font-weight:600;letter-spacing:-.022em;margin:0;line-height:1.2">Fusing three rankings into one</h2>
+        <div style="flex-grow:1"></div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#787E76">reciprocal rank fusion, k=60</div>
+      </div>
+      <p style="margin:0 0 16px;font-size:14.5px;line-height:1.55;color:#4A4F49;max-width:74ch">The same question was searched three ways. Each run returns its own ranking; a provision that several runs agree on rises, without any run&rsquo;s scores having to be made comparable to another&rsquo;s.</p>
+
+      <div style="border:1px solid #D6D9D2;border-radius:7px;background:#FFFFFF;overflow:hidden">
+        <table style="border-collapse:collapse;width:100%;font-size:14px">
+          <thead>
+            <tr>
+              <th style="text-align:left;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#787E76;font-weight:500;padding:10px 14px;border-bottom:1px solid #D6D9D2">Provision</th>
+              <th style="text-align:left;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#787E76;font-weight:500;padding:10px 14px;border-bottom:1px solid #D6D9D2">A &middot; as typed</th>
+              <th style="text-align:left;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#787E76;font-weight:500;padding:10px 14px;border-bottom:1px solid #D6D9D2">B &middot; legislator&rsquo;s words</th>
+              <th style="text-align:left;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#787E76;font-weight:500;padding:10px 14px;border-bottom:1px solid #D6D9D2">C &middot; with prior turn</th>
+              <th style="text-align:right;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#787E76;font-weight:500;padding:10px 14px;border-bottom:1px solid #D6D9D2">Fused</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#0E5C5E;font-weight:500">art.50.1</td>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#4A4F49;font-variant-numeric:tabular-nums">#1</td>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#4A4F49;font-variant-numeric:tabular-nums">#2</td>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#4A4F49;font-variant-numeric:tabular-nums">#1</td>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;text-align:right;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#171A17;font-weight:500;font-variant-numeric:tabular-nums">0.0489</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#0E5C5E;font-weight:500">art.50.2</td>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#4A4F49;font-variant-numeric:tabular-nums">#4</td>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#4A4F49;font-variant-numeric:tabular-nums">#1</td>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#4A4F49;font-variant-numeric:tabular-nums">#3</td>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;text-align:right;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#171A17;font-weight:500;font-variant-numeric:tabular-nums">0.0479</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#0E5C5E;font-weight:500">art.50.4</td>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#4A4F49;font-variant-numeric:tabular-nums">#7</td>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#4A4F49;font-variant-numeric:tabular-nums">#3</td>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#4A4F49;font-variant-numeric:tabular-nums">#2</td>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;text-align:right;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#171A17;font-weight:500;font-variant-numeric:tabular-nums">0.0469</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#787E76;font-weight:500">rec.132 <span style="font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#787E76">recital</span></td>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#4A4F49;font-variant-numeric:tabular-nums">#2</td>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#4A4F49;font-variant-numeric:tabular-nums">#6</td>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#4A4F49;font-variant-numeric:tabular-nums">#5</td>
+              <td style="padding:10px 14px;border-bottom:1px solid #D6D9D2;text-align:right;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#171A17;font-weight:500;font-variant-numeric:tabular-nums">0.0467</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#0E5C5E;font-weight:500">art.3.1</td>
+              <td style="padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#4A4F49;font-variant-numeric:tabular-nums">#3</td>
+              <td style="padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#B4B9AE;font-variant-numeric:tabular-nums">&mdash;</td>
+              <td style="padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#4A4F49;font-variant-numeric:tabular-nums">#8</td>
+              <td style="padding:10px 14px;text-align:right;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#171A17;font-weight:500;font-variant-numeric:tabular-nums">0.0306</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="margin-top:16px;background:#FFFFFF;border:1px solid #D6D9D2;border-radius:7px;padding:13px 16px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#787E76;margin-bottom:9px">The query that actually ran &mdash; run A</div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.75;color:#4A4F49">
+          <span style="color:#787E76">tsquery</span> &nbsp;<span style="text-decoration:line-through;text-decoration-color:#8F2E22;color:#B4B9AE">'ai'</span> | <span style="text-decoration:line-through;text-decoration-color:#8F2E22;color:#B4B9AE">'system'</span> | 'tell' | 'user' | 'talk' | 'interact'
+        </div>
+        <p style="margin:9px 0 0;font-size:13px;line-height:1.5;color:#4A4F49">Two lexemes were stripped before the search: <span style="font-family:'IBM Plex Mono',monospace;font-size:12px">ai</span> occurs in 626 of 3,378 provisions and <span style="font-family:'IBM Plex Mono',monospace;font-size:12px">system</span> in 574. Postgres full-text search has no IDF, so left in they rank everything equally &mdash; and therefore rank nothing.</p>
+      </div>
+    </div>
+
+    <div style="background:#FFFFFF;border-left:1px solid #D6D9D2;padding:20px 24px;display:flex;flex-direction:column;gap:16px;overflow:hidden">
+
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#787E76">Turn a decision off</div>
+          <div style="height:1px;background:#D6D9D2;flex-grow:1"></div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:11px">
+            <div style="width:32px;height:18px;border-radius:9px;background:oklch(0.42 0.070 195);position:relative;flex:none"><div style="width:14px;height:14px;border-radius:50%;background:#FFFFFF;position:absolute;top:2px;left:16px"></div></div>
+            <div style="font-size:13.5px;color:#171A17;flex-grow:1">Query expansion</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#787E76">5 terms</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:11px">
+            <div style="width:32px;height:18px;border-radius:9px;background:oklch(0.42 0.070 195);position:relative;flex:none"><div style="width:14px;height:14px;border-radius:50%;background:#FFFFFF;position:absolute;top:2px;left:16px"></div></div>
+            <div style="font-size:13.5px;color:#171A17;flex-grow:1">Corpus stopwords</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#787E76">df &gt; 22%</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:11px">
+            <div style="width:32px;height:18px;border-radius:9px;background:oklch(0.42 0.070 195);position:relative;flex:none"><div style="width:14px;height:14px;border-radius:50%;background:#FFFFFF;position:absolute;top:2px;left:16px"></div></div>
+            <div style="font-size:13.5px;color:#171A17;flex-grow:1">Length normalisation</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#787E76">32|1</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:11px">
+            <div style="width:32px;height:18px;border-radius:9px;background:#DFE2DB;position:relative;flex:none"><div style="width:14px;height:14px;border-radius:50%;background:#FFFFFF;position:absolute;top:2px;left:2px;box-shadow:0 1px 2px rgba(20,24,20,.2)"></div></div>
+            <div style="font-size:13.5px;color:#171A17;flex-grow:1">Follow cross-references</div>
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#787E76">off</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:11px;padding-top:4px">
+            <div style="font-size:13.5px;color:#171A17;flex-grow:1">Fusion</div>
+            <div style="display:flex;background:#E9EBE6;border-radius:4px;padding:2px;gap:2px">
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#FFFFFF;background:oklch(0.42 0.070 195);border-radius:3px;padding:3px 9px">RRF</div>
+              <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#4A4F49;padding:3px 9px;cursor:pointer">concat</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:13px;display:flex;gap:8px">
+          <div style="font-size:12.5px;color:#FFFFFF;background:oklch(0.42 0.070 195);border-radius:5px;padding:7px 13px;cursor:pointer">Re-rank &mdash; free</div>
+          <div style="font-size:12.5px;color:#4A4F49;border:1px solid #D6D9D2;border-radius:5px;padding:7px 13px;cursor:pointer">&hellip;and answer it &middot; $0.02</div>
+        </div>
+      </div>
+
+      <div style="border-left:3px solid oklch(0.42 0.070 195);background:#F3F4F1;border-radius:0 6px 6px 0;padding:14px 16px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#0E5C5E">What we measured</div>
+          <div style="flex-grow:1"></div>
+          <div style="display:flex;background:#E9EBE6;border-radius:4px;padding:2px;gap:1px">
+            <div style="font-size:10.5px;color:#4A4F49;padding:2px 7px;cursor:pointer">Plain</div>
+            <div style="font-size:10.5px;color:#171A17;background:#FFFFFF;border-radius:3px;padding:2px 7px">Practical</div>
+            <div style="font-size:10.5px;color:#4A4F49;padding:2px 7px;cursor:pointer">Technical</div>
+          </div>
+        </div>
+        <p style="margin:0 0 11px;font-size:13.5px;line-height:1.55;color:#171A17">Asking twice and <b style="font-weight:600">concatenating</b> the two result lists was worse than not asking twice at all. Fusing them by rank was better than either. The difference between those two ways of combining is 27 points of recall.</p>
+        <div style="display:flex;flex-direction:column;gap:5px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-variant-numeric:tabular-nums">
+          <div style="display:flex;align-items:center;gap:8px"><span style="color:#787E76;width:112px">lexical only</span><div style="height:7px;background:#B4B9AE;width:88px;border-radius:2px"></div><span style="color:#171A17">59%</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="color:#787E76;width:112px">+ concatenated</span><div style="height:7px;background:#8F2E22;width:61px;border-radius:2px"></div><span style="color:#8F2E22">41%</span></div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="color:#787E76;width:112px">+ fused by RRF</span><div style="height:7px;background:#1E6141;width:101px;border-radius:2px"></div><span style="color:#1E6141">68%</span></div>
+        </div>
+        <p style="margin:11px 0 0;font-size:11.5px;line-height:1.5;color:#787E76">recall@8 on a 22-question golden set, 2026-08-27. In-sample: the set was used to develop this retriever, so treat 68% as a development figure, not a holdout result.</p>
+      </div>
+
+      <div style="margin-top:auto;border:1px solid #D6D9D2;border-radius:7px;padding:13px 15px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#787E76;margin-bottom:9px">Why not just a score threshold?</div>
+        <p style="margin:0;font-size:13px;line-height:1.55;color:#4A4F49">It was built and measured. GDPR and Data Act questions score <b style="color:#171A17;font-weight:600">higher</b> than most in-scope ones &mdash; they share the whole vocabulary. The threshold rejected 2 of 10, and was removed.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

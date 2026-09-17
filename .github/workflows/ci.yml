@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
+        working-directory: web
+      # tsc runs as part of the build, so a type error fails here rather than
+      # in somebody's browser.
+      - run: npm run build
+        working-directory: web
+      - run: npx oxlint
+        working-directory: web
+
+  api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      # No database and no credentials in CI, so this is a syntax and import
+      # check rather than a test run - honest about what it proves.
+      - run: python -m compileall -q api/app api/scripts

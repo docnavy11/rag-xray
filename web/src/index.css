@@ -1,0 +1,136 @@
+@import "tailwindcss";
+
+/* The palette is lifted from AI-readiness/rag-architecture.html so this reads as
+   part of the same family rather than a new look.
+
+   Every colour is a token and nothing in a component hardcodes one, which is
+   what makes the dark palette below a redefinition rather than a rewrite. */
+@theme {
+  --color-paper: #F3F4F1;
+  --color-surface: #FFFFFF;
+  --color-surface2: #E9EBE6;
+  --color-surface3: #DFE2DB;
+  --color-ink: #171A17;
+  --color-ink2: #4A4F49;
+  --color-ink3: #787E76;
+  --color-rule: #D6D9D2;
+  --color-rule2: #B4B9AE;
+  --color-accent: #0E5C5E;
+  --color-accent2: #127A7D;
+  --color-accentsoft: #DCEAE9;
+  --color-accentline: var(--color-accentline);
+  --color-onaccent: #FFFFFF;
+  --color-warn: #8A5A12;
+  --color-warnbg: #F7EFDE;
+  --color-warnrule: #DEC28A;
+  --color-stop: #8F2E22;
+  --color-stopbg: #F8EAE7;
+  --color-stoprule: #E0B4AC;
+  --color-ok: #1E6141;
+  --color-okbg: #E2F0E8;
+  --color-okrule: var(--color-okrule);
+  --font-sans: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --font-serif: "IBM Plex Serif", Georgia, serif;
+}
+
+/* Dark.
+   Defined twice on purpose: once for the system preference, once for an explicit
+   choice. The media query is guarded so that picking Light on a machine set to
+   dark actually gives you light - a toggle that only works in one direction is
+   the usual bug here. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --color-paper: #131613;
+    --color-surface: #1A1E1A;
+    --color-surface2: #232823;
+    --color-surface3: #2D332D;
+    --color-ink: #E9ECE7;
+    --color-ink2: #B2B9B0;
+    --color-ink3: #838B82;
+    --color-rule: #2C322C;
+    --color-rule2: #454D45;
+    --color-accent: #63C4BE;
+    --color-accent2: #86D6D1;
+    --color-accentsoft: #14312F;
+    --color-accentline: #27514E;
+    --color-onaccent: #0C1614;
+    --color-warn: #E2B168;
+    --color-warnbg: #2B2314;
+    --color-warnrule: #5F4C26;
+    --color-stop: #F0907E;
+    --color-stopbg: #2F1A16;
+    --color-stoprule: #63322A;
+    --color-ok: #74C79D;
+    --color-okbg: #14281E;
+    --color-okrule: #2C4D3A;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --color-paper: #131613;
+  --color-surface: #1A1E1A;
+  --color-surface2: #232823;
+  --color-surface3: #2D332D;
+  --color-ink: #E9ECE7;
+  --color-ink2: #B2B9B0;
+  --color-ink3: #838B82;
+  --color-rule: #2C322C;
+  --color-rule2: #454D45;
+  --color-accent: #63C4BE;
+  --color-accent2: #86D6D1;
+  --color-accentsoft: #14312F;
+  --color-accentline: #27514E;
+  --color-onaccent: #0C1614;
+  --color-warn: #E2B168;
+  --color-warnbg: #2B2314;
+  --color-warnrule: #5F4C26;
+  --color-stop: #F0907E;
+  --color-stopbg: #2F1A16;
+  --color-stoprule: #63322A;
+  --color-ok: #74C79D;
+  --color-okbg: #14281E;
+  --color-okrule: #2C4D3A;
+}
+
+:root { --ui-zoom: 1; }
+
+html { background: var(--color-paper); }
+body {
+  margin: 0; background: var(--color-paper); color: var(--color-ink);
+  font-family: var(--font-sans); font-size: 16px; line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+
+  /* Text size is set by scaling the whole interface, not the type alone.
+     Every size in this app is in px - deliberately, because the layouts are
+     drawn to them - so a root font-size would move nothing. `zoom` scales the
+     px themselves, which keeps the proportions the screens were designed at
+     instead of leaving 13px labels beside 20px body text. */
+  zoom: var(--ui-zoom);
+}
+* { box-sizing: border-box; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; border-radius: 2px; }
+
+/* Full-height panes, corrected for the zoom above: inside a zoomed body, 100dvh
+   is a zoomed 100dvh and overflows the window by exactly the scale factor. */
+.h-app { height: calc(100dvh / var(--ui-zoom)); }
+.min-h-app { min-height: calc(100dvh / var(--ui-zoom)); }
+
+.kicker {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--color-accent);
+}
+.microlabel {
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: .13em;
+  text-transform: uppercase; color: var(--color-ink3);
+}
+.num { font-variant-numeric: tabular-nums; font-family: var(--font-mono); }
+.quote { font-family: var(--font-serif); font-style: italic; }
+.scrollthin::-webkit-scrollbar { width: 9px; height: 9px; }
+.scrollthin::-webkit-scrollbar-thumb { background: var(--color-rule2); border-radius: 5px; }
+.scrollthin::-webkit-scrollbar-track { background: transparent; }
+
+@keyframes pulsein { from { opacity: 0; transform: translateY(3px) } to { opacity: 1; transform: none } }
+.stagein { animation: pulsein .22s ease both; }

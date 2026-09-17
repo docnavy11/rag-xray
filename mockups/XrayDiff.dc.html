@@ -1,0 +1,146 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Serif:ital,wght@1,400&display=swap">
+  <style>
+    body{margin:0;font-family:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.62;-webkit-font-smoothing:antialiased}
+    a{color:#0E5C5E;text-underline-offset:2px}
+    a:hover{color:#127A7D}
+    .rw{display:grid;grid-template-columns:22px 1fr auto;gap:10px;align-items:center;padding:8px 13px;border-bottom:1px solid #D6D9D2}
+    .rk{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:#787E76;font-variant-numeric:tabular-nums}
+    .pa{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:#0E5C5E;font-weight:500}
+  </style>
+</helmet>
+
+<div style="width:1440px;height:960px;background:#F3F4F1;color:#171A17;display:flex;flex-direction:column;overflow:hidden">
+
+  <div style="height:57px;flex:none;background:#FFFFFF;border-bottom:1px solid #D6D9D2;display:flex;align-items:center;padding:0 22px;gap:14px">
+    <div style="display:flex;align-items:center;gap:7px;color:#4A4F49;font-size:13.5px;cursor:pointer">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 18l-6-6 6-6"></path></svg>
+      X-ray
+    </div>
+    <div style="width:1px;height:22px;background:#D6D9D2"></div>
+    <div style="font-size:14px;color:#171A17">Counterfactual</div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#4A4F49;background:#E9EBE6;border:1px solid #D6D9D2;border-radius:4px;padding:4px 10px">fusion: <span style="color:#1E6141">rrf</span> &rarr; <span style="color:#8A5A12">concat</span></div>
+    <div style="flex-grow:1"></div>
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#787E76">re-ranked in 11ms &middot; no model called &middot; $0.00</div>
+    <div style="font-size:12.5px;color:#4A4F49;border:1px solid #D6D9D2;border-radius:4px;padding:5px 11px;cursor:pointer">Reset</div>
+  </div>
+
+  <div style="flex:none;background:#F7EFDE;border-bottom:1px solid #DEC28A;padding:13px 26px;display:flex;align-items:center;gap:14px">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#8A5A12" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16.5v.01"></path></svg>
+    <p style="margin:0;font-size:14px;line-height:1.5;color:#171A17;max-width:100ch">You have switched off reciprocal rank fusion. The three result lists are now simply appended, one after another &mdash; which is what most retrieval code does by default, and what this pipeline did before it was measured.</p>
+  </div>
+
+  <div style="flex-grow:1;display:grid;grid-template-columns:minmax(0,1fr) 372px;min-height:0">
+
+    <div style="padding:22px 26px 0;display:flex;flex-direction:column;min-height:0">
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;flex:none">
+
+        <div>
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#1E6141">Now &middot; fused by RRF</div>
+            <div style="height:1px;background:#D6D9D2;flex-grow:1"></div>
+          </div>
+          <div style="background:#FFFFFF;border:1px solid #D6D9D2;border-radius:7px;overflow:hidden">
+            <div class="rw"><div class="rk">1</div><div class="pa">art.50.1</div><div class="rk" style="color:#B4B9AE">0.0489</div></div>
+            <div class="rw"><div class="rk">2</div><div class="pa">art.50.2</div><div class="rk" style="color:#B4B9AE">0.0479</div></div>
+            <div class="rw"><div class="rk">3</div><div class="pa">art.50.4</div><div class="rk" style="color:#B4B9AE">0.0469</div></div>
+            <div class="rw"><div class="rk">4</div><div class="pa" style="color:#787E76">rec.132</div><div class="rk" style="color:#B4B9AE">0.0467</div></div>
+            <div class="rw"><div class="rk">5</div><div class="pa">art.3.1</div><div class="rk" style="color:#B4B9AE">0.0306</div></div>
+            <div class="rw"><div class="rk">6</div><div class="pa">art.50.5</div><div class="rk" style="color:#B4B9AE">0.0298</div></div>
+            <div class="rw"><div class="rk">7</div><div class="pa" style="color:#787E76">rec.133</div><div class="rk" style="color:#B4B9AE">0.0291</div></div>
+            <div class="rw" style="border-bottom:0"><div class="rk">8</div><div class="pa">art.99.4</div><div class="rk" style="color:#B4B9AE">0.0284</div></div>
+          </div>
+        </div>
+
+        <div>
+          <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#8A5A12">If concatenated instead</div>
+            <div style="height:1px;background:#D6D9D2;flex-grow:1"></div>
+          </div>
+          <div style="background:#FFFFFF;border:1px solid #DEC28A;border-radius:7px;overflow:hidden">
+            <div class="rw"><div class="rk">1</div><div class="pa">art.50.1</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#B4B9AE">held</div></div>
+            <div class="rw"><div class="rk">2</div><div class="pa" style="color:#787E76">rec.132</div><div style="display:flex;align-items:center;gap:4px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#1E6141"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6 12l6-6 6 6"></path></svg>2</div></div>
+            <div class="rw"><div class="rk">3</div><div class="pa">art.3.1</div><div style="display:flex;align-items:center;gap:4px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#1E6141"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V6M6 12l6-6 6 6"></path></svg>2</div></div>
+            <div class="rw"><div class="rk">4</div><div class="pa">art.50.2</div><div style="display:flex;align-items:center;gap:4px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8F2E22"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v13M6 12l6 6 6-6"></path></svg>2</div></div>
+            <div class="rw" style="background:#F8EAE7"><div class="rk">5</div><div style="display:flex;align-items:center;gap:8px"><span class="pa" style="color:#8F2E22">art.52.3</span><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:#8F2E22;border:1px solid #E0B4AC;border-radius:3px;padding:1px 5px">no such provision</span></div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8F2E22">guessed</div></div>
+            <div class="rw" style="background:#F8EAE7"><div class="rk">6</div><div class="pa">art.50.4</div><div style="display:flex;align-items:center;gap:4px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8F2E22"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v13M6 12l6 6 6-6"></path></svg>3</div></div>
+            <div class="rw"><div class="rk">7</div><div class="pa" style="color:#787E76">rec.133</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#B4B9AE">held</div></div>
+            <div class="rw" style="border-bottom:0;background:#F8EAE7"><div class="rk" style="color:#B4B9AE">&mdash;</div><div class="pa" style="color:#B4B9AE;text-decoration:line-through">art.99.4</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#8F2E22">fell out</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:22px;flex-grow:1;min-height:0">
+        <div style="display:flex;align-items:baseline;gap:13px;border-top:2px solid #171A17;padding-top:12px;margin-bottom:12px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#0E5C5E;flex:none;padding-top:3px">05</span>
+          <h2 style="font-size:20px;font-weight:600;letter-spacing:-.022em;margin:0;line-height:1.2">What the model could actually see</h2>
+          <div style="flex-grow:1"></div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#787E76;font-variant-numeric:tabular-nums">8,140 of 1,000,000 tokens &middot; 0.8% of the window</div>
+        </div>
+
+        <div style="display:flex;height:34px;border-radius:5px;overflow:hidden;border:1px solid #D6D9D2">
+          <div style="width:15.2%;background:#4A4F49;display:grid;place-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#FFFFFF">rules 1,240</span></div>
+          <div style="width:78.7%;background:oklch(0.42 0.070 195);display:grid;place-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#FFFFFF">14 provisions &middot; 6,410</span></div>
+          <div style="width:6.1%;background:#B4B9AE;display:grid;place-items:center"><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#171A17">490</span></div>
+        </div>
+        <p style="margin:12px 0 0;font-size:14px;line-height:1.55;color:#4A4F49;max-width:82ch">Nothing else reached it. No web, no memory of the Regulation, no earlier conversation beyond the last four turns. If an article is not in the teal band, the model could not have read it &mdash; which is why a citation to anything outside it is reported rather than rendered.</p>
+      </div>
+    </div>
+
+    <div style="background:#FFFFFF;border-left:1px solid #D6D9D2;padding:22px 24px;display:flex;flex-direction:column;gap:18px;overflow:hidden">
+
+      <div>
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#787E76;margin-bottom:12px">What this one switch did</div>
+        <div style="display:flex;flex-direction:column;gap:11px">
+          <div style="display:flex;align-items:baseline;gap:12px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:23px;color:#8F2E22;font-variant-numeric:tabular-nums;line-height:1">2</div>
+            <div style="font-size:13.5px;line-height:1.45;color:#4A4F49">measured hits pushed down the list, one of them out of the window entirely</div>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:12px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:23px;color:#8F2E22;font-variant-numeric:tabular-nums;line-height:1">1</div>
+            <div style="font-size:13.5px;line-height:1.45;color:#4A4F49">article number the expansion model invented, now ranked fifth</div>
+          </div>
+          <div style="display:flex;align-items:baseline;gap:12px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:23px;color:#171A17;font-variant-numeric:tabular-nums;line-height:1">0</div>
+            <div style="font-size:13.5px;line-height:1.45;color:#4A4F49">extra cost to find this out &mdash; no model ran</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="border-left:3px solid #8A5A12;background:#F7EFDE;border-radius:0 6px 6px 0;padding:14px 16px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:#8A5A12;margin-bottom:8px">The lesson, measured</div>
+        <p style="margin:0 0 10px;font-size:13.5px;line-height:1.55;color:#171A17">Its <b style="font-weight:600">terms</b> are good &mdash; &ldquo;disclosure to natural persons&rdquo; is what finds Article 50(1). Its <b style="font-weight:600">citations</b> are not: asked on another question where the fines live, it answered art.71 and art.72. They are in Article 99, and three of five guessed paths did not exist at all.</p>
+        <p style="margin:0;font-size:13.5px;line-height:1.55;color:#171A17">Fusing by rank keeps the terms and discards the authority. Concatenating keeps both &mdash; and puts the guesses first.</p>
+      </div>
+
+      <div style="border:1px solid #D6D9D2;border-radius:7px;padding:13px 15px">
+        <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:#787E76;margin-bottom:8px">Where this number comes from</div>
+        <div style="display:flex;flex-direction:column;gap:6px;font-size:12.5px;line-height:1.5;color:#4A4F49">
+          <div style="display:flex;justify-content:space-between;gap:10px"><span>source</span><span style="font-family:'IBM Plex Mono',monospace;color:#171A17">eval/run_eval.py</span></div>
+          <div style="display:flex;justify-content:space-between;gap:10px"><span>questions</span><span style="font-family:'IBM Plex Mono',monospace;color:#171A17">n = 22</span></div>
+          <div style="display:flex;justify-content:space-between;gap:10px"><span>measured</span><span style="font-family:'IBM Plex Mono',monospace;color:#171A17">2026-08-27</span></div>
+          <div style="display:flex;justify-content:space-between;gap:10px"><span>holdout</span><span style="font-family:'IBM Plex Mono',monospace;color:#8A5A12">no &mdash; in-sample</span></div>
+        </div>
+      </div>
+
+      <div style="margin-top:auto;display:flex;flex-direction:column;gap:9px">
+        <div style="font-size:13px;color:#FFFFFF;background:oklch(0.42 0.070 195);border-radius:5px;padding:9px 13px;text-align:center;cursor:pointer">Run the golden set with this setting</div>
+        <p style="margin:0;font-size:11.5px;line-height:1.5;color:#787E76;text-align:center">22 questions, retrieval only, about 4 seconds</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>
