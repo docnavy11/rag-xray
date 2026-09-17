@@ -8,6 +8,33 @@ MIT licensed. Built as a showcase, then turned into something usable: you can
 put your own documents in it, point it at a source that syncs on a schedule, and
 watch every retrieval decision it makes.
 
+## What this is for
+
+**A workbench for experimenting with RAG approaches and the Claude Agent SDK.**
+Not a product, and not built for production: no accounts, no tenancy, one shared
+instance with one key, and no operational story for backups, upgrades or scale.
+Run it on your own machine, point it at your own documents, and use it to find
+out how retrieval behaves before you commit to a design somewhere that matters.
+
+That framing is the point rather than a disclaimer. The things it is good for:
+
+- **Trying a retrieval decision and seeing what it costs you.** Turn query
+  expansion off, swap RRF for concatenation, move the stopword threshold, and
+  watch the ranking diff and recall@k move. Every one of those is free — nothing
+  but answering reaches a model.
+- **Comparing chunking on a corpus you care about.** Upload the same documents
+  twice under different chunkers and put them side by side.
+- **Seeing what an agent loop actually does.** The chat runs on the Claude Agent
+  SDK, so retrieval is a tool the model chooses to call, once or four times, and
+  the X-ray shows each call and the pipeline nested inside it.
+- **Checking whether the answer is supported.** Every quoted span is verified
+  against the passages actually retrieved, and a citation to anything unretrieved
+  renders as plain text rather than as a source.
+
+If you take ideas from here into production, take the measurements and the
+architecture — the quote verification, the per-corpus stopwords, the trace bus —
+and leave the deployment model behind.
+
 ## Quickstart
 
 Needs Docker (for Postgres + pgvector), Python 3.12+ with [uv], Node 20+, and a
