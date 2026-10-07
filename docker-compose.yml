@@ -1,5 +1,6 @@
 services:
   db:
+    restart: unless-stopped
     image: pgvector/pgvector:pg16
     container_name: ragdemo-db
     environment:
